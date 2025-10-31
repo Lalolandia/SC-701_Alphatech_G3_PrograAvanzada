@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="busqueda" class="form-control" placeholder="Buscar producto por nombre..." />
+        </div>
+        <div class="col-md-6">
+            <select id="categoriaFiltro" class="form-select">
+                <option value="">Todas las categorías</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="row" id="listaDatos">
+       
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        const API_URL = 'https://localhost:7155/Productos';
+
+               function cargarDatos(filtro = "", categoriaId = "") {
+            $("#listaDatos").empty();
+
+            $.ajax({
+                url: API_URL,
+                method: 'GET',
+                success: function (dato) {
+                    let filtrados = dato;
+
+                    if (filtro) {
+                        filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(filtro.toLowerCase()));
+                    }
+
+                    if (categoriaId) {
+                        filtrados = filtrados.filter(p => p.categoria_id == categoriaId);
+                    }
+
+                    filtrados.forEach(item => {
+                        $("#listaDatos").append(`
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100 border-danger">
+                                    <img src="${item.imagen_url}" class="card-img-top" alt="${item.nombre}" style="height: 200px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${item.nombre}</h5>
+                                        <p class="card-text">${item.descripcion}</p>
+                                        <p class="card-text"><strong>Precio:</strong> ₡${item.precio}</p>
+                                        <p class="card-text"><strong>Stock:</strong> ${item.stock}</p>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between">
+                                        <button class="btn btn-outline-dark" onclick="agregarFavorito(${item.id_producto})">Favorito</button>
+                                        <a class="btn btn-danger" href="/Productos/Detalle/${item.id_producto}">Ingresar al producto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error: " + error);
+                }
+            });
+        }
+
+
+         function cargarCategorias() {
+            $.ajax({
+                url: 'https://localhost:7155/Categorias',
+                method: 'GET',
+                success: function (categorias) {
+                    categorias.forEach(cat => {
+                        $("#categoriaFiltro").append(`<option value="${cat.id_categoria}">${cat.nombre_categoria}</option>`);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al cargar categorías: " + error);
+                }
+            });
+        }
+
+        
+
+        function agregarFavorito(id) {
+            alert("Producto " + id + " agregado a favoritos.");
+        }
+
+
+                $(document).ready(function () {
+            cargarCategorias();
+            cargarDatos();
+
+            $("#busqueda, #categoriaFiltro").on("input change", function () {
+                const texto = $("#busqueda").val();
+                const categoria = $("#categoriaFiltro").val();
+                cargarDatos(texto, categoria);
+            });
+        });
+
+    </script>
+}

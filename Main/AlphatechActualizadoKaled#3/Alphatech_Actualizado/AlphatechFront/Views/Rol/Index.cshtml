@@ -1,0 +1,286 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Lista de Datos</h1>
+
+
+
+<div class="container">
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="text"
+               class="form-control"
+               name="id_rol"
+               id="id_rol"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text id</small>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text"
+               class="form-control"
+               name="nombre_rol"
+               id="nombre_rol"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text name</small>
+    </div>
+
+
+
+    <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
+    <a id="modificarDatos" class="btn btn-success">Actualizar </a>
+    <a id="limpiarDatos" onclick="limpiarDatos()" class="btn btn-danger">Limpiar </a>
+
+</div>
+
+
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="listaDatos">
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+    const API_URL = 'https://localhost:7155/Roles';
+
+            function cargarDatos(){
+            limpiarDatos();
+            $.ajax(
+                {
+                    url: API_URL,
+                    method: 'GET',
+                    success: function(dato){
+                        console.log(dato);
+                        $("#listaDatos").empty();
+
+
+                            dato.forEach(
+                                soyItem =>
+                                    {
+                                            $("#listaDatos").append(`
+
+                                                <tr>
+                                                    <td>${soyItem.id_rol}</td>
+                                                    <td>${soyItem.nombre_rol}</td>
+                                                    <th>
+
+                                                        <a
+                                                            name=""
+                                                            id=""
+                                                            class="btn btn-primary"
+                                                            href="#"
+                                                            role="button"
+                                                            onclick="cargarEditar('${soyItem.id_rol}','${soyItem.nombre_rol}')"
+                                                            >Editar</a
+                                                        >
+
+                                                        <a
+                                                            name="eliminar"
+                                                            id="eliminar"
+                                                            class="btn btn-danger"
+                                                            data-id="${soyItem.id_rol}"
+                                                            role="button"
+                                                            >Eliminar</a
+                                                        >
+
+                                                    </th>
+                                                </tr>
+                                            `)
+                                        });
+
+
+
+                    },
+                    error: function(xhr, status, error){
+                        console.error("error " + error) ;
+                    }
+
+                }
+            );
+            // $.get(API_URL, function(dato){
+
+            //     console.log(dato);
+            //     //??? que no tenga idea ???
+            //         dato.forEach( soyItem => {
+
+            //         }
+            //     );
+            // })
+        }
+
+
+
+
+        window.cargarEditar = function (id_rol, nombre_rol){
+            $('#id_rol').val(id_rol);
+            $('#nombre_rol').val(nombre_rol);
+
+
+            $("#guardarDatos").hide();
+            $("#modificarDatos").show();
+
+
+               //         <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
+    // <a id="modificarDatos" class="btn btn-success">Actualizar </a>
+
+        }
+
+        window.limpiarDatos = function(){
+        //function limpiarDatos(){
+            $('#id_rol').val("");
+            $('#nombre_rol').val("");
+
+
+            $("#modificarDatos").hide();
+            $("#guardarDatos").show();
+
+        }
+
+
+
+
+
+        $("#guardarDatos").click(function() {
+
+
+
+        const item =
+            {
+                id_rol: 0,
+                nombre_rol: $('#nombre_rol').val()
+
+            };
+
+
+            console.log(item);
+
+            $.ajax({
+                url: API_URL,
+                type: "POST",
+                contentType: ' application/json',
+                data: JSON.stringify(item),
+
+                success: function(){
+                    alert("Salvando");
+
+                    cargarDatos();
+                },
+                error: function(xhr, status, error){
+                            console.error("error " + error) ;
+                            console.error("status " + status) ;
+                            console.error("xhr " + xhr) ;
+                }
+
+
+            })
+
+
+        });
+
+        $("#modificarDatos").click(function() {
+
+
+
+        const item =
+            {
+                id_rol: $('#id_rol').val(),
+                nombre_rol: $('#nombre_rol').val()
+
+            };
+
+
+            console.log(item);
+
+            $.ajax({
+                url: API_URL,
+                type: "PUT",
+                contentType: ' application/json',
+                data: JSON.stringify(item),
+
+                success: function(){
+                    alert("Salvando");
+
+                    cargarDatos();
+                },
+                error: function(xhr, status, error){
+                            console.error("error " + error) ;
+                            console.error("status " + status) ;
+                            console.error("xhr " + xhr) ;
+                }
+
+
+            })
+
+
+        });
+
+
+
+
+
+    $(document).ready(function(){
+
+
+    //         <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
+    // <a id="modificarDatos" class="btn btn-success">Actualizar </a>
+
+        cargarDatos();
+
+        $(document).on("click", "#eliminar", function(e) {
+         e.preventDefault();
+
+        const id = $(this).data("id")
+
+        const item =
+            {
+                id_producto: id
+            };
+
+
+            console.log(item);
+
+            $.ajax({
+                url: API_URL + "?id=" +id,
+                type: "DELETE",
+                contentType: ' application/json',
+                data: JSON.stringify(item),
+
+                success: function(){
+                    alert("Eliminando");
+
+                    cargarDatos();
+                },
+                error: function(xhr, status, error){
+                            console.error("error " + error) ;
+                            console.error("status " + status) ;
+                            console.error("xhr " + xhr) ;
+                }
+
+
+            })
+
+
+        });
+    });
+
+</script>

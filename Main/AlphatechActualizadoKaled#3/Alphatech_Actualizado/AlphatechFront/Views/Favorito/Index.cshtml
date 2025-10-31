@@ -1,0 +1,56 @@
+﻿@{
+}
+
+<h1>Mis Productos Favoritos</h1>
+
+<div class="container">
+    <div class="row" id="listaFavoritos">
+    </div>
+</div>
+
+<script>
+    const API_URL_FAVORITOS = 'https://localhost:7155/Favorito';
+
+    function cargarFavoritos() {
+        $.ajax({
+            url: API_URL_FAVORITOS,
+            method: 'GET',
+            success: function(data) {
+                $("#listaFavoritos").empty();
+                data.forEach(item => {
+                    $("#listaFavoritos").append(`
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.nombre_producto}</h5>
+                                    <p class="card-text">Precio: $${item.precio.toFixed(2)}</p>
+                                    <button class="btn btn-danger" onclick="eliminarFavorito(${item.id_producto})">Eliminar de Favoritos</button>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al cargar los favoritos: " + error);
+            }
+        });
+    }
+
+    function eliminarFavorito(id_producto) {
+        $.ajax({
+            url: `${API_URL_FAVORITOS}?idProducto=${id_producto}`,
+            type: 'DELETE',
+            success: function() {
+                cargarFavoritos();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al eliminar de favoritos: " + error);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        cargarFavoritos();
+    });
+</script>

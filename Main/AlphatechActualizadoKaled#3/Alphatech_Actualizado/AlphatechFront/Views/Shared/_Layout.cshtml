@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AlphatechFront</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AlphatechFront.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-tech shadow-sm mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-microchip me-2"></i> AlphatechFront
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fas fa-home me-1"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy"><i class="fas fa-user-secret me-1"></i> Privacy</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Productos" asp-action="Index"><i class="fas fa-box-open me-1"></i> Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Categorias" asp-action="Index"><i class="fas fa-th-large me-1"></i> Categorías</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Rol" asp-action="Index"><i class="fas fa-user-shield me-1"></i> Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Index"><i class="fas fa-users me-1"></i> Usuarios</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Ventas" asp-action="Index"><i class="fas fa-shopping-cart me-1"></i> Ventas</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Carrito" asp-action="Index"><i class="fas fa-cart-plus me-1"></i> Carrito</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Favorito" asp-action="Index"><i class="fas fa-heart me-1"></i> Favoritos</a></li>
+
+                        <!-- 🔔 Notificaciones -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link position-relative" href="#" id="notificacionesDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-bell"></i>
+                                <span id="contadorNotificaciones" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificacionesDropdown"
+                                style="max-height:300px; overflow-y:auto;" id="listaNotificaciones">
+                                <li><span class="dropdown-item">Sin notificaciones</span></li>
+                            </ul>
+                        </li>
+
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-light text-center text-muted py-4 mt-5 border-top">
+        <div class="container">
+            <p class="mb-1">&copy; 2025 - AlphatechFront</p>
+            <p class="mb-1">Teléfono: +506 2222 3333 | Email: contacto@alphatech.com</p>
+            <p class="mb-1">Ubicación: San José, Costa Rica</p>
+            <p class="mb-0">
+                <a asp-controller="Home" asp-action="Privacy">Términos y Condiciones</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        const API_URL_NOTIFICACIONES = '/api/notificaciones';
+
+        function cargarNotificaciones() {
+            $.get(API_URL_NOTIFICACIONES, function (notificaciones) {
+                $("#listaNotificaciones").empty();
+                if (!notificaciones || notificaciones.length === 0) {
+                    $("#listaNotificaciones").append('<li><span class="dropdown-item">Sin notificaciones</span></li>');
+                    $("#contadorNotificaciones").text("0");
+                    return;
+                }
+
+                let noLeidas = 0;
+                notificaciones.forEach(n => {
+                    if (!n.leida) noLeidas++;
+                    $("#listaNotificaciones").append(`
+                        <li>
+                            <a class="dropdown-item ${n.leida ? '' : 'fw-bold'}" href="${n.url || '#'}" onclick="marcarLeida(${n.id})">
+                                ${n.mensaje} <br/>
+                                <small class="text-muted">${new Date(n.fecha).toLocaleString()}</small>
+                            </a>
+                        </li>
+                    `);
+                });
+                $("#contadorNotificaciones").text(noLeidas);
+            });
+        }
+
+        function marcarLeida(id) {
+            $.ajax({
+                url: `${API_URL_NOTIFICACIONES}/marcarleidas`,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify([id]),
+                success: cargarNotificaciones
+            });
+        }
+
+        $(document).ready(function () {
+            cargarNotificaciones();
+            setInterval(cargarNotificaciones, 30000); // refrescar cada 30s
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

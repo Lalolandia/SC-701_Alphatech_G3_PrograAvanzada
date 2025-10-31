@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Administrar Cupones";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Gestión de Cupones</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cuponModal" id="btnNuevoCupon">
+            <i class="fas fa-plus"></i> Nuevo Cupón
+        </button>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Código</th>
+                <th>Descuento (%)</th>
+                <th>Expiración</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaCuponesBody">
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="cuponModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crear Cupón</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formCupon">
+                    <input type="hidden" id="cuponId">
+                    <div class="mb-3">
+                        <label for="codigo" class="form-label">Código</label>
+                        <input type="text" class="form-control" id="codigo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descuento" class="form-label">Descuento (%)</label>
+                        <input type="number" class="form-control" id="descuento" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaExpiracion" class="form-label">Fecha de Expiración</label>
+                        <input type="date" class="form-control" id="fechaExpiracion" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="activo">
+                        <label class="form-check-label" for="activo">Activo</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnGuardarCupon">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            const apiBaseUrl = '/api/cupones';
+
+            // Función para cargar los cupones en la tabla
+            function cargarCupones() {
+                $.get(apiBaseUrl, function(data) {
+                    const tbody = $('#tablaCuponesBody');
+                    tbody.empty();
+                    data.forEach(cupon => {
+                        tbody.append(`
+                            <tr data-id="${cupon.id}">
+                                <td>${cupon.codigo}</td>
+                                <td>${cupon.descuento}</td>
+                                <td>${new Date(cupon.fechaExpiracion).toLocaleDateString()}</td>
+                                <td>${cupon.activo ? 'Sí' : 'No'}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info btn-editar">Editar</button>
+                                    <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>
+                                </td>
+                            </tr>
+                        `);
+                    });
+                });
+            }
+
+            // Guardar (Crear o Actualizar) un cupón
+            $('#btnGuardarCupon').on('click', function() {
+                const cupon = {
+                    id: parseInt($('#cuponId').val()) || 0,
+                    codigo: $('#codigo').val(),
+                    descuento: parseFloat($('#descuento').val()),
+                    fechaExpiracion: $('#fechaExpiracion').val(),
+                    activo: $('#activo').is(':checked')
+                };
+
+                const method = cupon.id === 0 ? 'POST' : 'PUT';
+                const url = cupon.id === 0 ? apiBaseUrl : `${apiBaseUrl}/${cupon.id}`;
+
+                $.ajax({
+                    url: url,
+                    method: method,
+                    contentType: 'application/json',
+                    data: JSON.stringify(cupon),
+                    success: function() {
+                        $('#cuponModal').modal('hide');
+                        cargarCupones();
+                    }
+                });
+            });
+
+            // Limpiar el modal al abrirlo para un nuevo cupón
+            $('#btnNuevoCupon').on('click', function() {
+                $('#formCupon')[0].reset();
+                $('#cuponId').val('');
+                $('#modalLabel').text('Crear Cupón');
+            });
+
+            // Cargar datos en el modal para editar
+            $('#tablaCuponesBody').on('click', '.btn-editar', function() {
+                const id = $(this).closest('tr').data('id');
+                $.get(`${apiBaseUrl}/${id}`, function(cupon) {
+                    $('#cuponId').val(cupon.id);
+                    $('#codigo').val(cupon.codigo);
+                    $('#descuento').val(cupon.descuento);
+                    $('#fechaExpiracion').val(cupon.fechaExpiracion.split('T')[0]); // Formato YYYY-MM-DD
+                    $('#activo').prop('checked', cupon.activo);
+                    $('#modalLabel').text('Editar Cupón');
+                    $('#cuponModal').modal('show');
+                });
+            });
+
+            // Eliminar un cupón
+            $('#tablaCuponesBody').on('click', '.btn-eliminar', function() {
+                const id = $(this).closest('tr').data('id');
+                if (confirm('¿Estás seguro de que deseas eliminar este cupón?')) {
+                    $.ajax({
+                        url: `${apiBaseUrl}/${id}`,
+                        method: 'DELETE',
+                        success: function() {
+                            cargarCupones();
+                        }
+                    });
+                }
+            });
+
+
+            // Carga inicial
+            cargarCupones();
+        });
+    </script>
+}

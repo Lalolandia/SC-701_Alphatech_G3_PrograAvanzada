@@ -1,0 +1,107 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+/* Tipografía y fondo general */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Navbar */
+.navbar-tech {
+    background-color: #ffffff;
+    border-bottom: 2px solid #ff0000;
+}
+
+    .navbar-tech .navbar-brand {
+        color: #000000 !important;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .navbar-tech .nav-link {
+        color: #000000 !important;
+        margin-right: 10px;
+        transition: color 0.3s ease;
+    }
+
+        .navbar-tech .nav-link:hover {
+            color: #ff0000 !important;
+            text-decoration: underline;
+        }
+
+/* Botón hamburguesa */
+.navbar-toggler {
+    border-color: #000000;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000000' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Contenido principal */
+main {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 1rem 0;
+    border-top: 2px solid #ff0000;
+    text-align: center;
+}
+
+    footer a {
+        color: #ff0000;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #000000;
+        }
+
+/* Botones */
+.btn-primary {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #ffffff;
+}
+
+    .btn-primary:hover {
+        background-color: #cc0000;
+        border-color: #cc0000;
+    }
+
+.btn-outline-dark {
+    border-color: #000000;
+    color: #000000;
+}
+
+    .btn-outline-dark:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
+

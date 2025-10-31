@@ -1,0 +1,58 @@
+﻿@{
+}
+
+<h1>Detalle de Venta</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Venta ID: <span id="idVenta"></span></h3>
+        </div>
+    </div>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="listaDetalleVenta">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const API_URL_DETALLE_VENTA = 'https://localhost:7155/DetalleVenta';
+
+    function cargarDetalleVenta(id_venta) {
+        $.ajax({
+            url: `${API_URL_DETALLE_VENTA}?idVenta=${id_venta}`,
+            method: 'GET',
+            success: function(data) {
+                $("#listaDetalleVenta").empty();
+                data.forEach(item => {
+                    const subtotal = item.cantidad * item.precio_unitario;
+                    $("#listaDetalleVenta").append(`
+                        <tr>
+                            <td>${item.id_producto}</td> <td>${item.cantidad}</td>
+                            <td>${item.precio_unitario}</td>
+                            <td>${subtotal}</td>
+                        </tr>
+                    `);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al cargar el detalle de venta: " + error);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        // You would call this function with an actual sale ID from the URL or a click event.
+        // Example: cargarDetalleVenta(1);
+    });
+</script>
