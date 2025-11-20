@@ -1,0 +1,52 @@
+﻿@model AlphatechFront.Models.Producto
+
+<h2>Detalle del Producto</h2>
+
+@if (Model == null)
+{
+    <div class="alert alert-danger">
+        Producto no encontrado.
+    </div>
+}
+else
+{
+    <div class="card shadow p-4" style="max-width: 700px;">
+        <div class="row">
+            <div class="col-md-5">
+                @if (!string.IsNullOrEmpty(Model.imagen_url))
+                {
+                    <img src="@Model.imagen_url" class="img-fluid rounded" />
+                }
+                else
+                {
+                    <img src="/images/no-image.png" class="img-fluid rounded" />
+                }
+            </div>
+
+            <div class="col-md-7">
+                <h3>@Model.nombre</h3>
+                <p class="text-muted">@Model.descripcion</p>
+
+                <h4 class="text-success">₡@Model.precio</h4>
+
+                <p>
+                    <strong>Stock:</strong> @Model.stock
+                </p>
+
+                <div class="mt-3">
+                    <a asp-controller="Productos" asp-action="Index" class="btn btn-secondary">
+                        Volver
+                    </a>
+
+                    <a asp-action="Editar" asp-route-id="@Model.id_producto" class="btn btn-warning">
+                        Editar
+                    </a>
+
+                    <a asp-action="Eliminar" asp-route-id="@Model.id_producto" class="btn btn-danger">
+                        Eliminar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

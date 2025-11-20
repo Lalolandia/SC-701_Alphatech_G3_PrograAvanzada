@@ -1,0 +1,41 @@
+﻿@model List<AlphatechFront.Models.Producto>
+
+<h2>Productos</h2>
+
+<a asp-controller="Productos" asp-action="Crear" class="btn btn-primary mb-3">
+    Crear Producto
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Imagen</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.id_producto</td>
+                <td>@p.nombre</td>
+                <td>₡@p.precio</td>
+                <td>@p.stock</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(p.imagen_url))
+                    {
+                                <img src="@p.imagen_url" width="80" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@p.id_producto" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Eliminar" asp-route-id="@p.id_producto" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

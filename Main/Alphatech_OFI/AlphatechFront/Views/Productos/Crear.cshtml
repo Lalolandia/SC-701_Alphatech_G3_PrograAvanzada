@@ -1,0 +1,32 @@
+﻿@model AlphatechFront.Models.Producto
+
+<h2>Crear Producto</h2>
+
+<form asp-action="Crear" method="post">
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="nombre" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Descripción</label>
+        <textarea asp-for="descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Precio</label>
+        <input asp-for="precio" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Stock</label>
+        <input asp-for="stock" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Imagen URL</label>
+        <input asp-for="imagen_url" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
