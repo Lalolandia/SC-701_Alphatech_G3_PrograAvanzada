@@ -679,3 +679,16 @@ D:\TAVO_PROYECTO\SC-701_Alphatech_G3_PrograAvanzada-main\Main\AlphatechActualiza
 D:\TAVO_PROYECTO\SC-701_Alphatech_G3_PrograAvanzada-main\Main\AlphatechActualizado\Alphatech_Actualizado\AlphatechFront\obj\Debug\net8.0\AlphatechFront.pdb
 D:\TAVO_PROYECTO\SC-701_Alphatech_G3_PrograAvanzada-main\Main\AlphatechActualizado\Alphatech_Actualizado\AlphatechFront\obj\Debug\net8.0\AlphatechFront.genruntimeconfig.cache
 D:\TAVO_PROYECTO\SC-701_Alphatech_G3_PrograAvanzada-main\Main\AlphatechActualizado\Alphatech_Actualizado\AlphatechFront\obj\Debug\net8.0\ref\AlphatechFront.dll
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.csproj.AssemblyReference.cache
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.AssemblyInfoInputs.cache
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.AssemblyInfo.cs
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.csproj.CoreCompileInputs.cache
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.RazorAssemblyInfo.cache
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.RazorAssemblyInfo.cs
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.sourcelink.json
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.dll
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\refint\AlphatechFront.dll
+C:\Users\Luis\Documents\PROGRAMACION\PROGRA AVANZ WEB\SC-701_Alphatech_G3_PrograAvanzada\Main\Alphatech_OFI\AlphatechFront\obj\Debug\net8.0\AlphatechFront.pdb

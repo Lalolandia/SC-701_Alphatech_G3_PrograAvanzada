@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Soporte Técnico";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Mis Tickets de Soporte</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ticketModal">
+            <i class="fas fa-plus"></i> Nuevo Ticket
+        </button>
+    </div>
+
+    <div id="ticketsContainer" class="list-group">
+    </div>
+</div>
+
+<div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ticketModalLabel">Crear Nuevo Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formTicket">
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label">Asunto</label>
+                        <input type="text" class="form-control" id="asunto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción del Problema</label>
+                        <textarea class="form-control" id="descripcion" rows="5" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnEnviarTicket">Enviar Ticket</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            const apiBaseUrl = '/api/ticketssoporte';
+
+            function cargarTickets() {
+                $.get(apiBaseUrl, function(data) {
+                    const container = $('#ticketsContainer');
+                    container.empty();
+                    if (data.length === 0) {
+                        container.html('<p class="text-center">No tienes tickets abiertos.</p>');
+                        return;
+                    }
+                    data.forEach(ticket => {
+                        let estadoClass = '';
+                        switch (ticket.estado) {
+                            case 0: estadoClass = 'bg-success'; break; // Abierto
+                            case 1: estadoClass = 'bg-warning'; break; // En Proceso
+                            case 2: estadoClass = 'bg-secondary'; break; // Cerrado
+                        }
+
+                        container.append(`
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">${ticket.asunto}</h5>
+                                    <small>${new Date(ticket.fechaCreacion).toLocaleDateString()}</small>
+                                </div>
+                                <p class="mb-1">${ticket.descripcion.substring(0, 100)}...</p>
+                                <small>Estado: <span class="badge ${estadoClass}">${ticket.estado}</span></small>
+                            </a>
+                        `);
+                    });
+                });
+            }
+
+            $('#btnEnviarTicket').on('click', function() {
+                const ticket = {
+                    // El UsuarioId se debería obtener del backend a partir del usuario logueado
+                    asunto: $('#asunto').val(),
+                    descripcion: $('#descripcion').val(),
+                    fechaCreacion: new Date().toISOString(),
+                    estado: 0 // Estado "Abierto"
+                };
+
+                $.ajax({
+                    url: apiBaseUrl,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(ticket),
+                    success: function() {
+                        $('#ticketModal').modal('hide');
+                        $('#formTicket')[0].reset();
+                        cargarTickets();
+                    }
+                });
+            });
+
+            cargarTickets();
+        });
+    </script>
+}

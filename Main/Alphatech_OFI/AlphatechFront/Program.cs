@@ -43,7 +43,8 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 var app = builder.Build();
 
 await SeedService.SeedDatabase(app.Services);

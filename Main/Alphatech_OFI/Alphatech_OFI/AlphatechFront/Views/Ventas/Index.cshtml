@@ -1,0 +1,52 @@
+﻿@{
+}
+
+<h1>Historial de Ventas</h1>
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>Id Venta</th>
+                <th>Id Usuario</th>
+                <th>Fecha de Venta</th>
+                <th>Total</th>
+                <th>Cupón Aplicado</th>
+            </tr>
+        </thead>
+        <tbody id="listaVentas">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const API_URL_VENTAS = 'https://localhost:7155/Ventas'; 
+
+    function cargarVentas() {
+        $.ajax({
+            url: API_URL_VENTAS,
+            method: 'GET',
+            success: function(data) {
+                $("#listaVentas").empty();
+                data.forEach(item => {
+                    $("#listaVentas").append(`
+                        <tr>
+                            <td>${item.id_venta}</td>
+                            <td>${item.id_usuario}</td>
+                            <td>${item.fecha_venta}</td>
+                            <td>${item.total}</td>
+                            <td>${item.cupon_aplicado || 'N/A'}</td>
+                        </tr>
+                    `);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al cargar las ventas: " + error);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        cargarVentas();
+    });
+</script>

@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Carrito de Compras";
+}
+
+<h1>Carrito de Compras</h1>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="listaCarrito">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-6 text-right">
+            <h3>Total: <span id="totalCarrito">$0.00</span></h3>
+
+            <!-- Input para cupón -->
+            <div class="mt-3">
+                <input type="text" id="codigoCupon" class="form-control mb-2" placeholder="Ingresa tu cupón">
+                <button id="aplicarCupon" class="btn btn-primary">Aplicar Cupón</button>
+                <p id="mensajeCupon" class="mt-2"></p>
+            </div>
+
+            <button id="finalizarCompra" class="btn btn-success mt-3">Finalizar Compra</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_URL_CARRITO = 'https://localhost:7155/Carrito'; // Ajusta según tu ruta real
+    const API_URL_CUPONES = 'https://localhost:7155/api/cupones';
+
+    let descuentoAplicado = 0; // % de descuento
+    let codigoAplicado = null; // Código usado
+
+    function cargarCarrito() {
+        $.ajax({
+            url: API_URL_CARRITO,
+            method: 'GET',
+            success: function (data) {
+                $("#listaCarrito").empty();
+                let total = 0;
+
+                data.forEach(item => {
+                    const subtotal = item.cantidad * item.precio_unitario;
+                    total += subtotal;
+                    $("#listaCarrito").append(`
+                        <tr>
+                            <td>${item.nombre_producto}</td>
+                            <td>
+                                <input type="number" class="form-control" value="${item.cantidad}" onchange="actualizarCantidad(${item.id_producto}, this.value)">
+                            </td>
+                            <td>$${item.precio_unitario.toFixed(2)}</td>
+                            <td>$${subtotal.toFixed(2)}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${item.id_producto})">Eliminar</button>
+                            </td>
+                        </tr>
+                    `);
+                });
+
+                // Aplicar descuento si hay uno activo
+                if (descuentoAplicado > 0) {
+                    const totalConDescuento = total - (total * (descuentoAplicado / 100));
+                    $("#totalCarrito").html(`$${totalConDescuento.toFixed(2)} <small class="text-success">(Descuento aplicado ${descuentoAplicado}% - Cupón: ${codigoAplicado})</small>`);
+                } else {
+                    $("#totalCarrito").text(`$${total.toFixed(2)}`);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error al cargar el carrito: " + error);
+            }
+        });
+    }
+
+    function actualizarCantidad(id_producto, cantidad) {
+        const item = { id_producto: id_producto, cantidad: parseInt(cantidad) };
+        $.ajax({
+            url: API_URL_CARRITO,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(item),
+            success: function () {
+                cargarCarrito();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error al actualizar la cantidad: " + error);
+            }
+        });
+    }
+
+    function eliminarProducto(id_producto) {
+        $.ajax({
+            url: `${API_URL_CARRITO}?idProducto=${id_producto}`,
+            type: 'DELETE',
+            success: function () {
+                cargarCarrito();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error al eliminar el producto: " + error);
+            }
+        });
+    }
+
+    // Aplicar cupón
+    $("#aplicarCupon").click(function () {
+        const codigo = $("#codigoCupon").val().trim();
+        if (!codigo) {
+            $("#mensajeCupon").text("Debes ingresar un código de cupón").removeClass("text-success").addClass("text-danger");
+            return;
+        }
+
+        $.ajax({
+            url: `${API_URL_CUPONES}/validar/${codigo}`,
+            method: 'GET',
+            success: function (cupon) {
+                descuentoAplicado = cupon.descuento;
+                codigoAplicado = cupon.codigo;
+                $("#mensajeCupon").text(`Cupón aplicado correctamente (-${descuentoAplicado}%)`).removeClass("text-danger").addClass("text-success");
+                cargarCarrito();
+            },
+            error: function (xhr) {
+                descuentoAplicado = 0;
+                codigoAplicado = null;
+                const errorMsg = xhr.responseJSON?.mensaje || "Cupón inválido";
+                $("#mensajeCupon").text(errorMsg).removeClass("text-success").addClass("text-danger");
+                cargarCarrito();
+            }
+        });
+    });
+
+    // Finalizar compra
+    $("#finalizarCompra").click(function () {
+        // Aquí puedes enviar al backend la venta con el código de cupón usado (si existe)
+        alert(codigoAplicado ? `Compra finalizada con cupón ${codigoAplicado} aplicado.` : "Compra finalizada sin cupón.");
+    });
+
+    $(document).ready(function () {
+        cargarCarrito();
+    });
+</script>

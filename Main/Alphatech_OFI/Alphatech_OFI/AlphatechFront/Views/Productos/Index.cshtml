@@ -1,0 +1,88 @@
+﻿@model IEnumerable<AlphatechFront.Models.Producto>
+
+@{
+    ViewData["Title"] = "Gestión de Productos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="text-primary fw-bold mb-0">Inventario</h2>
+        <p class="text-muted small">Gestiona tu catálogo de productos</p>
+    </div>
+    <a asp-action="Crear" class="btn btn-primary shadow-sm rounded-pill px-4">
+        <i class="fas fa-plus me-2"></i>Nuevo Producto
+    </a>
+</div>
+
+<div class="card shadow border-0 mb-4">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light text-uppercase text-secondary small">
+                    <tr>
+                        <th class="ps-4 py-3">Producto</th>
+                        <th class="py-3">Categoría</th>
+                        <th class="py-3">Precio</th>
+                        <th class="py-3">Stock</th>
+                        <th class="text-end pe-4 py-3">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="border-top-0">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar me-3">
+                                        <img src="@item.ImagenUrl" class="rounded border" style="width: 48px; height: 48px; object-fit: cover;" onerror="this.src='/imagenes/default.png'">
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold text-dark">@item.Nombre</div>
+                                        <div class="small text-muted">ID: @item.Id</div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-light text-dark border">
+                                    @(item.CategoriaNombre ?? "Sin Categoría")
+                                </span>
+                            </td>
+
+                            <td class="fw-bold text-success">
+                                ₡@item.Precio.ToString("N2")
+                            </td>
+
+                            <td>
+                                @if (item.Stock == 0)
+                                {
+                                    <span class="badge bg-danger">Agotado</span>
+                                }
+                                else if (item.Stock < 5)
+                                {
+                                    <span class="badge bg-warning text-dark">Bajo (@item.Stock)</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">@item.Stock un.</span>
+                                }
+                            </td>
+
+                            <td class="text-end pe-4">
+                                <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <form asp-action="Eliminar" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar el producto: @item.Nombre?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

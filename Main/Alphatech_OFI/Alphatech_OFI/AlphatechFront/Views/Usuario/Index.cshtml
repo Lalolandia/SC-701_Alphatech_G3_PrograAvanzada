@@ -1,0 +1,383 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Lista de Datos</h1>
+
+
+
+<div class="container">
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="text"
+               class="form-control"
+               name="id_usuario"
+               id="id_usuario"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text id</small>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text"
+               class="form-control"
+               name="nombre"
+               id="nombre"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text name</small>
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Apellidos</label>
+        <input type="text"
+               class="form-control"
+               name="apellido"
+               id="apellido"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text descripcion</small>
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label>
+        <input type="text"
+               class="form-control"
+               name="email"
+               id="email"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text Marca</small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Contraseña</label>
+        <input type="text"
+               class="form-control"
+               name="contrasena"
+               id="contrasena"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text Marca</small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Telefono</label>
+        <input type="text"
+               class="form-control"
+               name="telefono"
+               id="telefono"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text Marca</small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Fecha de registro</label>
+        <input type="datetime-local"
+               class="form-control"
+               name="fecha_registro"
+               id="fecha_registro"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text Marca</small>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Rol</label>
+        <input type="text"
+               class="form-control"
+               name="rol_id"
+               id="rol_id"
+               aria-describedby="helpId"
+               placeholder="" />
+        <small id="helpId" class="form-text text-muted">Help text Marca</small>
+    </div>
+    
+
+    <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
+    <a id="modificarDatos" class="btn btn-success">Actualizar </a>
+    <a id="limpiarDatos" onclick="limpiarDatos()" class="btn btn-danger">Limpiar </a>
+
+</div>
+
+
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Contrasena</th>
+                <th>Telefono</th>
+                <th>Fecha de Registro</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="listaDatos">
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+    const API_URL = 'https://localhost:7155/Usuarios';
+
+            function cargarDatos(){
+            limpiarDatos();
+            $.ajax(
+                {
+                    url: API_URL,
+                    method: 'GET',
+                    success: function(dato){
+                        console.log(dato);
+                        $("#listaDatos").empty();
+
+
+                            dato.forEach(
+                                soyItem =>
+                                    {
+                                            $("#listaDatos").append(`
+
+                                                <tr>
+                                                    <td>${soyItem.id_usuario}</td>
+                                                    <td>${soyItem.nombre}</td>
+                                                    <td>${soyItem.apellido}</td>
+                                                    <td>${soyItem.email}</td>
+                                                    <td>${soyItem.contrasena}</td>
+                                                    <td>${soyItem.telefono}</td>
+                                                    <td>${soyItem.fecha_registro}</td>
+                                                    <td>${soyItem.rol_id}</td>
+                                                    
+                                                    <th>
+
+                                                        <a
+                                                            name=""
+                                                            id=""
+                                                            class="btn btn-primary"
+                                                            href="#"
+                                                            role="button"
+                                                            onclick="cargarEditar('${soyItem.id_usuario}','${soyItem.nombre}','${soyItem.apellido}','${soyItem.email}'
+                                                            ,'${soyItem.contrasena}','${soyItem.telefono}','${soyItem.fecha_registro}','${soyItem.rol_id}')"
+                                                            >Editar</a
+                                                        >
+
+                                                        <a
+                                                            name="eliminar"
+                                                            id="eliminar"
+                                                            class="btn btn-danger"
+                                                            data-id="${soyItem.id_usuario}"
+                                                            role="button"
+                                                            >Eliminar</a
+                                                        >
+
+                                                    </th>
+                                                </tr>
+                                            `)
+                                        });
+
+
+
+                    },
+                    error: function(xhr, status, error){
+                        console.error("error " + error) ;
+                    }
+
+                }
+            );
+            // $.get(API_URL, function(dato){
+
+            //     console.log(dato);
+            //     //??? que no tenga idea ???
+            //         dato.forEach( soyItem => {
+
+            //         }
+            //     );
+            // })
+        }
+
+
+
+
+        window.cargarEditar = function (id_usuario, nombre, apellido, email, contrasena, telefono, fecha_registro,rol_id){
+            $('#id_usuario').val(id_usuario);
+            $('#nombre').val(nombre);
+            $('#apellido').val(apellido);
+            $('#email').val(email);
+            $('#contrasena').val(contrasena);
+            $('#telefono').val(telefono);
+            $('#fecha_registro').val(fecha_registro);
+            $('#rol_id').val(rol_id);
+            
+
+            $("#guardarDatos").hide();
+            $("#modificarDatos").show();
+
+
+               //         <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
+    // <a id="modificarDatos" class="btn btn-success">Actualizar </a>
+
+        }
+
+        window.limpiarDatos = function(){
+        //function limpiarDatos(){
+            $('#id_usuario').val("");
+            $('#nombre').val("");
+            $('#apellido').val("");
+            $('#email').val("");
+            $('#contrasena').val("");
+            $('#telefono').val("");
+            $('#fecha_registro').val("");
+            $('#rol_id').val("");
+
+
+            $("#modificarDatos").hide();
+            $("#guardarDatos").show();
+
+        }
+
+
+
+
+
+        $("#guardarDatos").click(function() {
+
+
+
+        const item =
+            {
+                id_usuario: 0,
+                nombre: $('#nombre').val(),
+                apellido:  $('#apellido').val(),
+                email:  $('#email').val(),
+                contrasena:  $('#contrasena').val(),
+                telefono:  $('#telefono').val(),
+                fecha_registro:  $('#fecha_registro').val(),
+                rol_id:  $('#rol_id').val()
+            };
+
+
+            console.log(item);
+
+            $.ajax({
+                url: API_URL,
+                type: "POST",
+                contentType: ' application/json',
+                data: JSON.stringify(item),
+
+                success: function(){
+                    alert("Salvando");
+
+                    cargarDatos();
+                },
+                error: function(xhr, status, error){
+                            console.error("error " + error) ;
+                            console.error("status " + status) ;
+                            console.error("xhr " + xhr) ;
+                }
+
+
+            })
+
+
+        });
+
+        $("#modificarDatos").click(function() {
+
+
+
+        const item =
+            {
+               id_usuario: $('#id_usuario').val(),
+                nombre: $('#nombre').val(),
+                apellido:  $('#apellido').val(),
+                email:  $('#email').val(),
+                contrasena:  $('#contrasena').val(),
+                telefono:  $('#telefono').val(),
+                fecha_registro:  $('#fecha_registro').val(),
+                rol_id:  $('#rol_id').val()
+            };
+
+
+            console.log(item);
+
+            $.ajax({
+                url: API_URL,
+                type: "PUT",
+                contentType: ' application/json',
+                data: JSON.stringify(item),
+
+                success: function(){
+                    alert("Salvando");
+
+                    cargarDatos();
+                },
+                error: function(xhr, status, error){
+                            console.error("error " + error) ;
+                            console.error("status " + status) ;
+                            console.error("xhr " + xhr) ;
+                }
+
+
+            })
+
+
+        });
+
+
+
+
+
+    $(document).ready(function(){
+
+
+    //         <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
+    // <a id="modificarDatos" class="btn btn-success">Actualizar </a>
+
+        cargarDatos();
+
+        $(document).on("click", "#eliminar", function(e) {
+         e.preventDefault();
+
+        const id = $(this).data("id")
+
+        const item =
+            {
+                id_usuario: id
+            };
+
+
+            console.log(item);
+
+            $.ajax({
+                url: API_URL + "?id=" +id,
+                type: "DELETE",
+                contentType: ' application/json',
+                data: JSON.stringify(item),
+
+                success: function(){
+                    alert("Eliminando");
+
+                    cargarDatos();
+                },
+                error: function(xhr, status, error){
+                            console.error("error " + error) ;
+                            console.error("status " + status) ;
+                            console.error("xhr " + xhr) ;
+                }
+
+
+            })
+
+
+        });
+    });
+
+</script>
