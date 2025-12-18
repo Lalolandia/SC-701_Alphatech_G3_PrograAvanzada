@@ -4,12 +4,14 @@ namespace AlphatechFront.Models
 {
     public class Notificacion
     {
-        [Key]
         public int Id { get; set; }
-        public int UsuarioId { get; set; } // A qué usuario pertenece
+
+        // IMPORTANTE: Aquí debe decir UsuarioId para coincidir con el Controller
+        public string UsuarioId { get; set; }
+
         public string Mensaje { get; set; }
-        public DateTime Fecha { get; set; }
-        public bool Leida { get; set; }
-        public string Url { get; set; } // Opcional: para redirigir al hacer clic
+        public string Url { get; set; } // A dónde te lleva al hacer click
+        public bool Leida { get; set; } = false;
+        public DateTime Fecha { get; set; } = DateTime.Now;
     }
 }

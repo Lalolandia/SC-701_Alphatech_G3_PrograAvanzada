@@ -105,3 +105,160 @@ footer {
         color: #ffffff;
     }
 
+/* =========================================
+   ESTILO ALPHATECH PREMIUM (TIPO EXTREMETECH)
+   ========================================= */
+
+:root {
+    --tech-red: #e60012; /* Rojo intenso */
+    --tech-dark: #111111; /* Negro casi puro */
+    --tech-gray: #f4f4f4; /* Gris muy suave para fondos */
+}
+
+body {
+    background-color: var(--tech-gray);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- 1. TOP BAR (Barra negra superior) --- */
+.top-bar {
+    background-color: black;
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 0;
+}
+
+    .top-bar a {
+        color: #ccc;
+        text-decoration: none;
+        margin-left: 15px;
+    }
+
+        .top-bar a:hover {
+            color: white;
+        }
+
+/* --- 2. NAVBAR PRINCIPAL --- */
+.navbar-tech {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 3px solid var(--tech-red); /* Línea roja debajo */
+}
+
+.search-bar-tech input {
+    border: 2px solid #ddd;
+    border-radius: 50px 0 0 50px; /* Redondo a la izquierda */
+    padding-left: 20px;
+}
+
+.search-bar-tech button {
+    border-radius: 0 50px 50px 0; /* Redondo a la derecha */
+    background-color: var(--tech-dark);
+    color: white;
+    border: none;
+    padding: 0 25px;
+}
+
+    .search-bar-tech button:hover {
+        background-color: var(--tech-red);
+    }
+
+/* --- 3. CATEGORÍAS CIRCULARES (HOME) --- */
+.cat-circle {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, border-color 0.3s;
+    border: 2px solid transparent;
+}
+
+    .cat-circle:hover {
+        transform: translateY(-5px);
+        border-color: var(--tech-red);
+    }
+
+    .cat-circle i {
+        font-size: 3rem;
+        color: #555;
+    }
+
+.cat-label {
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* --- 4. TARJETAS DE PRODUCTO --- */
+.card-product-tech {
+    border: none;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+    .card-product-tech:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+.price-tag {
+    color: var(--tech-red);
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.badge-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--tech-red);
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+/* --- 5. FOOTER OSCURO --- */
+.footer-tech {
+    background-color: #0a0a0a; /* Fondo muy oscuro */
+    color: #bbb;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    border-top: 5px solid var(--tech-red);
+}
+
+    .footer-tech h5 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 800;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .footer-tech ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .footer-tech ul li {
+            margin-bottom: 10px;
+        }
+
+    .footer-tech a {
+        color: #bbb;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+        .footer-tech a:hover {
+            color: var(--tech-red);
+        }

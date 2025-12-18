@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Downloads\\Alphatech_OFI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\repositories\\ventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\repositories\\ventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\interfaces\\iventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\interfaces\\iventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 317,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,28 +46,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IVentaRepository.cs",
-              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Interfaces\\IVentaRepository.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Interfaces\\IVentaRepository.cs",
-              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Interfaces\\IVentaRepository.cs",
-              "RelativeToolTip": "AlphatechFront\\Interfaces\\IVentaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T07:24:49.887Z",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "AlphatechFront\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Views\\Shared\\_Layout.cshtml*",
+              "RelativeToolTip": "AlphatechFront\\Views\\Shared\\_Layout.cshtml*",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-18T07:02:20.097Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "VentaRepository.cs",
-              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Repositories\\VentaRepository.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Repositories\\VentaRepository.cs",
-              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Repositories\\VentaRepository.cs",
-              "RelativeToolTip": "AlphatechFront\\Repositories\\VentaRepository.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "AlphatechFront\\Views\\Admin\\Index.cshtml",
+              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "AlphatechFront\\Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAmwH8AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-18T07:01:53.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "AlphatechFront\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "AlphatechFront\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAmwC8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T07:24:36.137Z",
+              "WhenOpened": "2025-12-18T07:01:15.7Z",
               "EditorCaption": ""
             }
           ]

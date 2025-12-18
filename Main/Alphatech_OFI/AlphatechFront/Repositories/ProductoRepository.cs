@@ -113,5 +113,28 @@ namespace AlphatechFront.Repositories
                 return await connection.QueryAsync<CategoriaSelect>(query);
             }
         }
+        public async Task<IEnumerable<Producto>> ObtenerProductosCatalogo(string? busqueda, int? categoriaId)
+        {
+            // SQL Dinámico: Filtra si le mandamos datos, si no, trae todo.
+            var query = @"
+        SELECT 
+            p.id_producto as Id, 
+            p.nombre as Nombre, 
+            p.descripcion as Descripcion, 
+            p.precio as Precio, 
+            p.stock as Stock, 
+            p.imagen_url as ImagenUrl, 
+            c.nombre_categoria as CategoriaNombre 
+        FROM productos p
+        INNER JOIN categorias c ON p.categoria_id = c.id_categoria
+        WHERE 1 = 1 
+        AND (@Busqueda IS NULL OR p.nombre LIKE '%' + @Busqueda + '%')
+        AND (@CategoriaId IS NULL OR p.categoria_id = @CategoriaId)";
+
+            using (var connection = _context.CreateConnection())
+            {
+                return await connection.QueryAsync<Producto>(query, new { Busqueda = busqueda, CategoriaId = categoriaId });
+            }
+        }
     }
 }

@@ -19,4 +19,6 @@ public interface IProductoRepository
     // Eliminar - ¡Este también!
     Task DeleteProducto(int id);
     Task<IEnumerable<CategoriaSelect>> ObtenerCategoriasParaSelect();
+    // Agrega esta línea:
+    Task<IEnumerable<Producto>> ObtenerProductosCatalogo(string? busqueda, int? categoriaId);
 }

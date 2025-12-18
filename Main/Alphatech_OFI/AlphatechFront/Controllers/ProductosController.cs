@@ -149,5 +149,22 @@ namespace AlphatechFront.Controllers
 
             return "/imagenes/productos/" + nombreArchivo;
         }
+        // --- VISTA PÚBLICA (CATÁLOGO) ---
+        [AllowAnonymous] // ¡Importante! Cualquiera puede ver el catálogo, logueado o no
+        public async Task<IActionResult> Catalogo(string? busqueda, int? categoriaId)
+        {
+            // 1. Obtener productos filtrados
+            var productos = await _productoRepo.ObtenerProductosCatalogo(busqueda, categoriaId);
+
+            // 2. Cargar categorías para la barra lateral
+            var categorias = await _productoRepo.ObtenerCategoriasParaSelect();
+            ViewBag.Categorias = categorias;
+
+            // 3. Mantener los filtros en la vista (para que no se borren del input)
+            ViewBag.BusquedaActual = busqueda;
+            ViewBag.CategoriaActual = categoriaId;
+
+            return View(productos);
+        }
     }
 }

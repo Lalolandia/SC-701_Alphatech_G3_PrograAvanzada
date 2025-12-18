@@ -1,108 +1,153 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<AlphatechFront.Models.Producto>
+@{
+    ViewData["Title"] = "Inicio";
 }
 
-
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <input type="text" id="busqueda" class="form-control" placeholder="Buscar producto por nombre..." />
+<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop" class="d-block w-100" style="height: 450px; object-fit: cover; filter: brightness(0.6);" alt="Gaming Setup">
+            <div class="carousel-caption d-none d-md-block text-start" style="bottom: 100px;">
+                <span class="badge bg-danger mb-2">OFERTA SEMANAL</span>
+                <h1 class="display-3 fw-bold text-uppercase">Construye tu <br><span class="text-danger">PC SOÑADA</span></h1>
+                <p class="lead">Componentes de última generación con precios de locura.</p>
+                <a asp-controller="Productos" asp-action="Catalogo" class="btn btn-danger btn-lg rounded-pill px-5 fw-bold">COMPRAR AHORA</a>
+            </div>
         </div>
-        <div class="col-md-6">
-            <select id="categoriaFiltro" class="form-select">
-                <option value="">Todas las categorías</option>
-            </select>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=2042&auto=format&fit=crop" class="d-block w-100" style="height: 450px; object-fit: cover; filter: brightness(0.7);" alt="Laptops">
+            <div class="carousel-caption d-none d-md-block text-end" style="bottom: 100px;">
+                <h1 class="display-3 fw-bold text-uppercase">Laptops <span class="text-info">Gamer</span></h1>
+                <p class="lead">MSI, ASUS ROG, HP OMEN. Potencia portátil.</p>
+                <a asp-controller="Productos" asp-action="Catalogo" class="btn btn-outline-light btn-lg rounded-pill px-5 fw-bold">VER MODELOS</a>
+            </div>
         </div>
-
     </div>
-    <div class="row" id="listaDatos">
-       
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+</div>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2 border-danger">
+        <h3 class="fw-bold text-uppercase m-0">Categorías <span class="text-danger">Populares</span></h3>
+        <a href="#" class="text-decoration-none text-muted small fw-bold">VER TODAS <i class="fas fa-chevron-right"></i></a>
+    </div>
+
+    <div class="row text-center justify-content-center">
+        <div class="col-6 col-md-2 mb-3">
+            <a asp-controller="Productos" asp-action="Catalogo" asp-route-busqueda="Laptop" class="text-decoration-none">
+                <div class="cat-circle">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="cat-label mt-2">Laptops</div>
+            </a>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+            <a asp-controller="Productos" asp-action="Catalogo" asp-route-busqueda="Monitor" class="text-decoration-none">
+                <div class="cat-circle">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <div class="cat-label mt-2">Monitores</div>
+            </a>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+            <a asp-controller="Productos" asp-action="Catalogo" asp-route-busqueda="Procesador" class="text-decoration-none">
+                <div class="cat-circle">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="cat-label mt-2">Procesadores</div>
+            </a>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+            <a asp-controller="Productos" asp-action="Catalogo" asp-route-busqueda="Teclado" class="text-decoration-none">
+                <div class="cat-circle">
+                    <i class="fas fa-keyboard"></i>
+                </div>
+                <div class="cat-label mt-2">Periféricos</div>
+            </a>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+            <a asp-controller="Productos" asp-action="Catalogo" asp-route-busqueda="Silla" class="text-decoration-none">
+                <div class="cat-circle">
+                    <i class="fas fa-chair"></i>
+                </div>
+                <div class="cat-label mt-2">Sillas</div>
+            </a>
+        </div>
     </div>
 </div>
 
+<div class="bg-white py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-uppercase">Tu Próxima Laptop <span class="text-danger">Te Espera</span></h2>
+            <div class="bg-danger mx-auto mt-2" style="width: 60px; height: 4px;"></div>
+        </div>
 
+        @if (!Model.Any())
+        {
+            <div class="text-center py-4">
+                <p class="text-muted">Aun no hay productos cargados en el sistema.</p>
+                <a asp-controller="Productos" asp-action="Index" class="btn btn-primary">Ir al Admin a crear productos</a>
+            </div>
+        }
+        else
+        {
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card card-product-tech h-100 shadow-sm">
+                            <span class="badge-discount">-10%</span>
 
+                            <div class="p-4 text-center">
+                                <img src="@(string.IsNullOrEmpty(item.ImagenUrl) ? "https://via.placeholder.com/200" : item.ImagenUrl)"
+                                     class="img-fluid" style="height: 160px; object-fit: contain;" alt="@item.Nombre">
+                            </div>
 
-@section Scripts {
-    <script>
-        const API_URL = 'https://localhost:7155/Productos';
+                            <div class="card-body border-top">
+                                <small class="text-muted text-uppercase fw-bold" style="font-size:0.7rem;">@item.CategoriaNombre</small>
+                                <h6 class="card-title fw-bold text-truncate mt-1">@item.Nombre</h6>
 
-               function cargarDatos(filtro = "", categoriaId = "") {
-            $("#listaDatos").empty();
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="price-tag">₡@item.Precio.ToString("N0")</div>
+                                </div>
 
-            $.ajax({
-                url: API_URL,
-                method: 'GET',
-                success: function (dato) {
-                    let filtrados = dato;
-
-                    if (filtro) {
-                        filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(filtro.toLowerCase()));
-                    }
-
-                    if (categoriaId) {
-                        filtrados = filtrados.filter(p => p.categoria_id == categoriaId);
-                    }
-
-                    filtrados.forEach(item => {
-                        $("#listaDatos").append(`
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100 border-danger">
-                                    <img src="${item.imagen_url}" class="card-img-top" alt="${item.nombre}" style="height: 200px; object-fit: cover;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${item.nombre}</h5>
-                                        <p class="card-text">${item.descripcion}</p>
-                                        <p class="card-text"><strong>Precio:</strong> ₡${item.precio}</p>
-                                        <p class="card-text"><strong>Stock:</strong> ${item.stock}</p>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between">
-                                        <button class="btn btn-outline-dark" onclick="agregarFavorito(${item.id_producto})">Favorito</button>
-                                        <a class="btn btn-danger" href="/Productos/Detalle/${item.id_producto}">Ingresar al producto</a>
-                                    </div>
+                                <div class="d-grid mt-3">
+                                    <button class="btn btn-dark btn-sm rounded-pill fw-bold">
+                                        <i class="fas fa-cart-plus me-2"></i> AGREGAR
+                                    </button>
                                 </div>
                             </div>
-                        `);
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error: " + error);
+                        </div>
+                    </div>
                 }
-            });
+            </div>
         }
+    </div>
+</div>
 
-
-         function cargarCategorias() {
-            $.ajax({
-                url: 'https://localhost:7155/Categorias',
-                method: 'GET',
-                success: function (categorias) {
-                    categorias.forEach(cat => {
-                        $("#categoriaFiltro").append(`<option value="${cat.id_categoria}">${cat.nombre_categoria}</option>`);
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error al cargar categorías: " + error);
-                }
-            });
-        }
-
-        
-
-        function agregarFavorito(id) {
-            alert("Producto " + id + " agregado a favoritos.");
-        }
-
-
-                $(document).ready(function () {
-            cargarCategorias();
-            cargarDatos();
-
-            $("#busqueda, #categoriaFiltro").on("input change", function () {
-                const texto = $("#busqueda").val();
-                const categoria = $("#categoriaFiltro").val();
-                cargarDatos(texto, categoria);
-            });
-        });
-
-    </script>
-}
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="rounded p-5 text-white position-relative overflow-hidden" style="background: #111;">
+                <div class="position-relative z-1">
+                    <h3 class="fw-bold">Regalá Calidad</h3>
+                    <p>Monitores 4K y 144Hz para ver cada detalle.</p>
+                    <button class="btn btn-outline-light rounded-pill px-4 fw-bold">Ver Monitores</button>
+                </div>
+                <i class="fas fa-desktop position-absolute text-white opacity-25" style="font-size: 150px; right: -20px; bottom: -20px;"></i>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="rounded p-5 text-white position-relative overflow-hidden" style="background: #e60012;">
+                <div class="position-relative z-1">
+                    <h3 class="fw-bold">Tu Casa Más Smart</h3>
+                    <p>Alexa, luces RGB y todo para tu hogar inteligente.</p>
+                    <button class="btn btn-light text-danger rounded-pill px-4 fw-bold">Ver Smart Home</button>
+                </div>
+                <i class="fas fa-wifi position-absolute text-white opacity-25" style="font-size: 150px; right: -20px; bottom: -20px;"></i>
+            </div>
+        </div>
+    </div>
+</div>
