@@ -1,91 +1,153 @@
 ﻿using AlphatechFront.Models;
-// Asegúrate de tener este using apuntando a donde creaste la interfaz
-// using AlphatechFront.Interfaces; 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphatechFront.Controllers
 {
+    [Authorize(Roles = "Admin")] // Protegido solo para Admins
     public class ProductosController : Controller
     {
         private readonly IProductoRepository _productoRepo;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        // Inyectamos el Repositorio (Dapper) y el Entorno (para la ruta de imágenes)
         public ProductosController(IProductoRepository productoRepo, IWebHostEnvironment webHostEnvironment)
         {
             _productoRepo = productoRepo;
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Productos (Listado usando Dapper)
+        // GET: Lista Admin
         public async Task<IActionResult> Index()
         {
             var productos = await _productoRepo.ObtenerProductos();
             return View(productos);
         }
 
-        // GET: Productos/Detalle/5
-        public async Task<IActionResult> Detalle(int id)
+        // GET: Catálogo Público
+        [AllowAnonymous]
+        public async Task<IActionResult> Catalogo()
         {
-            var producto = await _productoRepo.ObtenerProductoPorId(id);
-            if (producto == null)
-            {
-                return NotFound();
-            }
-            return View(producto);
+            var productos = await _productoRepo.ObtenerProductos();
+            return View(productos);
         }
 
-        // GET: Productos/Crear
-        public IActionResult Crear()
+        // --- CREAR ---
+        public async Task<IActionResult> Crear()
         {
-            // Aquí más adelante cargaremos las Categorías para un DropDownList
+            // Cargamos las categorías para el Dropdown
+            var categorias = await _productoRepo.ObtenerCategoriasParaSelect();
+            ViewBag.Categorias = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(categorias, "Id", "Nombre");
+
             return View();
         }
 
-        // POST: Productos/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear(Producto modelo, IFormFile imagenArchivo)
+        public async Task<IActionResult> Crear(Producto modelo, IFormFile? imagenArchivo)
         {
             if (ModelState.IsValid)
             {
-                // Lógica para guardar la imagen
-                if (imagenArchivo != null && imagenArchivo.Length > 0)
+                try
                 {
-                    // 1. Definir la ruta: wwwroot/imagenes/productos
-                    string carpetaDestino = Path.Combine(_webHostEnvironment.WebRootPath, "imagenes", "productos");
+                    modelo.ImagenUrl = await SubirImagen(imagenArchivo);
+                    await _productoRepo.CrearProducto(modelo);
 
-                    // 2. Crear la carpeta si no existe
-                    if (!Directory.Exists(carpetaDestino))
-                    {
-                        Directory.CreateDirectory(carpetaDestino);
-                    }
-
-                    // 3. Generar un nombre único para evitar duplicados (ej: ag23-guid.jpg)
-                    string nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagenArchivo.FileName);
-                    string rutaCompleta = Path.Combine(carpetaDestino, nombreArchivo);
-
-                    // 4. Guardar el archivo físicamente
-                    using (var fileStream = new FileStream(rutaCompleta, FileMode.Create))
-                    {
-                        await imagenArchivo.CopyToAsync(fileStream);
-                    }
-
-                    // 5. Guardar la ruta relativa en el modelo para la Base de Datos
-                    modelo.ImagenUrl = "/imagenes/productos/" + nombreArchivo;
+                    // MENSAJE DE ÉXITO
+                    TempData["Exito"] = "El producto se ha creado correctamente.";
+                    return RedirectToAction(nameof(Index));
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Imagen por defecto si no suben nada
-                    modelo.ImagenUrl = "/imagenes/default.png";
+                    TempData["Error"] = "Error al guardar en base de datos: " + ex.Message;
                 }
-
-                // Guardar en SQL Server usando el SP con Dapper
-                await _productoRepo.CrearProducto(modelo);
-
-                return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                TempData["Error"] = "Por favor corrige los errores en el formulario.";
+            }
+
+            // Recargar categorias si falla
+            var categorias = await _productoRepo.ObtenerCategoriasParaSelect();
+            ViewBag.Categorias = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(categorias, "Id", "Nombre");
             return View(modelo);
+        }
+
+        // --- EDITAR ---
+        public async Task<IActionResult> Editar(int id)
+        {
+            var producto = await _productoRepo.ObtenerProductoPorId(id);
+            if (producto == null) return NotFound();
+            var categorias = await _productoRepo.ObtenerCategoriasParaSelect();
+            ViewBag.Categorias = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(categorias, "Id", "Nombre", producto.CategoriaId);
+            
+            return View(producto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(Producto modelo, IFormFile? imagenArchivo)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (imagenArchivo != null) modelo.ImagenUrl = await SubirImagen(imagenArchivo);
+                    await _productoRepo.UpdateProducto(modelo);
+
+                    // MENSAJE DE ÉXITO
+                    TempData["Exito"] = "Producto actualizado con éxito.";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    TempData["Error"] = "Error al actualizar: " + ex.Message;
+                }
+            }
+            else
+            {
+                TempData["Error"] = "Hay datos inválidos en el formulario.";
+            }
+
+            var categorias = await _productoRepo.ObtenerCategoriasParaSelect();
+            ViewBag.Categorias = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(categorias, "Id", "Nombre", modelo.CategoriaId);
+            return View(modelo);
+        }
+
+        // --- ELIMINAR ---
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Eliminar(int id)
+        {
+            try
+            {
+                await _productoRepo.DeleteProducto(id);
+                TempData["Exito"] = "Producto eliminado permanentemente.";
+            }
+            catch (Exception)
+            {
+                // Esto captura errores si el producto ya está en una venta (Integridad Referencial)
+                TempData["Error"] = "No se puede eliminar este producto porque ya tiene ventas asociadas.";
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Método auxiliar para subir imágenes
+        private async Task<string> SubirImagen(IFormFile? archivo)
+        {
+            if (archivo == null || archivo.Length == 0) return "/imagenes/default.png";
+
+            string carpeta = Path.Combine(_webHostEnvironment.WebRootPath, "imagenes", "productos");
+            if (!Directory.Exists(carpeta)) Directory.CreateDirectory(carpeta);
+
+            string nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(archivo.FileName);
+            string rutaCompleta = Path.Combine(carpeta, nombreArchivo);
+
+            using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+            {
+                await archivo.CopyToAsync(stream);
+            }
+
+            return "/imagenes/productos/" + nombreArchivo;
         }
     }
 }

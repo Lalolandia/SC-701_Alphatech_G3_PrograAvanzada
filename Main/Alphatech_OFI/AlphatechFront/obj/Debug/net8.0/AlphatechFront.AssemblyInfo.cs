@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AlphatechFront")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d87a6fac152a6d1fbd23beb8e7dc43488730bb4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("AlphatechFront")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AlphatechFront")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

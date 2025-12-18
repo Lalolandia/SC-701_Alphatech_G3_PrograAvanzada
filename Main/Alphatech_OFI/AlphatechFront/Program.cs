@@ -1,5 +1,7 @@
 ﻿using AlphatechFront.Data;
+using AlphatechFront.Interfaces;
 using AlphatechFront.Models;
+using AlphatechFront.Repositories;
 using AlphatechFront.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -43,8 +45,13 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IVentaRepository, VentaRepository>();
+
 var app = builder.Build();
 
 await SeedService.SeedDatabase(app.Services);

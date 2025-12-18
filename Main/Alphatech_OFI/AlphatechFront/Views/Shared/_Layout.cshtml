@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,95 +9,307 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AlphatechFront.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* Sidebar Fijo a la izquierda */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            background-color: #fff;
+            width: 250px; /* Ancho fijo */
+        }
+
+        /* Contenedor principal empujado a la derecha */
+        .main-content-admin {
+            margin-left: 250px; /* Mismo ancho que el sidebar */
+            padding: 20px;
+            background-color: #f8f9fe;
+            min-height: 100vh;
+        }
+
+        /* Enlaces del Sidebar */
+        .sidebar .nav-link {
+            font-weight: 500;
+            color: #333;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .sidebar .nav-link:hover {
+                color: #5e72e4;
+                background-color: #f6f9fc;
+            }
+
+            .sidebar .nav-link.active {
+                color: #5e72e4;
+                background-color: #f6f9fc;
+                border-right: 4px solid #5e72e4;
+                font-weight: 700;
+            }
+
+            .sidebar .nav-link i {
+                margin-right: 12px;
+                width: 20px;
+                text-align: center;
+            }
+    </style>
 </head>
+
+@using Microsoft.AspNetCore.Identity
+@using AlphatechFront.Models
+
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+@{
+        // Detectamos si es Admin para cambiar el diseño
+        bool esAdmin = SignInManager.IsSignedIn(User) && User.IsInRole("Admin");
+
+        // Obtenemos el controlador actual para marcar el menú activo
+        string currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+}
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-tech shadow-sm mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-microchip me-2"></i> AlphatechFront
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fas fa-home me-1"></i> Home</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy"><i class="fas fa-user-secret me-1"></i> Privacy</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Productos" asp-action="Index"><i class="fas fa-box-open me-1"></i> Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Categorias" asp-action="Index"><i class="fas fa-th-large me-1"></i> Categorías</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Rol" asp-action="Index"><i class="fas fa-user-shield me-1"></i> Roles</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Index"><i class="fas fa-users me-1"></i> Usuarios</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Ventas" asp-action="Index"><i class="fas fa-shopping-cart me-1"></i> Ventas</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Carrito" asp-action="Index"><i class="fas fa-cart-plus me-1"></i> Carrito</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Favorito" asp-action="Index"><i class="fas fa-heart me-1"></i> Favoritos</a></li>
 
-                        <!-- 🔔 Notificaciones -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link position-relative" href="#" id="notificacionesDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-bell"></i>
-                                <span id="contadorNotificaciones" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificacionesDropdown"
-                                style="max-height:300px; overflow-y:auto;" id="listaNotificaciones">
-                                <li><span class="dropdown-item">Sin notificaciones</span></li>
-                            </ul>
-                        </li>
+    @if (esAdmin)
+    {
+        /* =========================================================
+        DISEÑO 1: ADMINISTRADOR (SIDEBAR + PANEL)
+        ========================================================= */
 
-                        <partial name="_LoginPartial" />
-                    </ul>
+        <nav class="sidebar d-none d-md-block bg-white shadow">
+            <div class="position-sticky pt-3">
+
+                <div class="text-center mb-4 px-3">
+                    <h4 class="text-primary fw-bold mb-0"><i class="fas fa-microchip"></i> Alphatech</h4>
+                    <span class="badge bg-light text-secondary text-uppercase border mt-1">Panel Admin</span>
+                </div>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small fw-bold">
+                    <span>Gestión de Tienda</span>
+                </h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Productos" ? "active" : "")" asp-controller="Productos" asp-action="Index">
+                            <i class="fas fa-box"></i> Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Categorias" ? "active" : "")" asp-controller="Categorias" asp-action="Index">
+                            <i class="fas fa-tags"></i> Categorías
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Ventas" ? "active" : "")" asp-controller="Ventas" asp-action="Index">
+                            <i class="fas fa-money-bill-wave"></i> Ventas
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small fw-bold">
+                    <span>Seguridad y Acceso</span>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Usuarios" ? "active" : "")" asp-controller="Usuarios" asp-action="Index">
+                            <i class="fas fa-users"></i> Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(currentController == "Roles" ? "active" : "")" asp-controller="Roles" asp-action="Index">
+                            <i class="fas fa-user-shield"></i> Roles
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="mt-5 px-3">
+                    <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn btn-outline-danger w-100 btn-sm">
+                            <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
-    </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+        <div class="main-content-admin">
+            <nav class="navbar navbar-light bg-white shadow-sm rounded mb-4 px-4 py-3 justify-content-between">
+                <h5 class="mb-0 text-dark fw-bold">Bienvenido, @User.Identity?.Name</h5>
+
+                <div class="dropdown">
+                    <a class="nav-link position-relative text-secondary" href="#" id="notifAdmin" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span id="contadorNotificacionesAdmin" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="notifAdmin" id="listaNotificacionesAdmin" style="width: 300px;">
+                        <li><span class="dropdown-item text-muted small">Cargando notificaciones...</span></li>
+                    </ul>
+                </div>
+            </nav>
+
             @RenderBody()
-        </main>
-    </div>
 
-    <footer class="bg-light text-center text-muted py-4 mt-5 border-top">
-        <div class="container">
-            <p class="mb-1">&copy; 2025 - AlphatechFront</p>
-            <p class="mb-1">Teléfono: +506 2222 3333 | Email: contacto@alphatech.com</p>
-            <p class="mb-1">Ubicación: San José, Costa Rica</p>
-            <p class="mb-0">
-                <a asp-controller="Home" asp-action="Privacy">Términos y Condiciones</a>
-            </p>
+            <footer class="mt-5 text-muted text-center small">
+                &copy; 2025 - Panel Administrativo Alphatech
+            </footer>
         </div>
-    </footer>
+    }
+    else
+    {
+        /* =========================================================
+        DISEÑO 2: CLIENTE NORMAL (NAVBAR SUPERIOR)
+        ========================================================= */
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm mb-3 py-3 border-bottom">
+                <div class="container">
+                    <a class="navbar-brand fw-bold text-primary fs-4" asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-microchip me-2"></i> Alphatech
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1 ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" asp-controller="Home" asp-action="Index">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-bold" asp-controller="Productos" asp-action="Catalogo">Catálogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav align-items-center">
+                            <li class="nav-item me-2">
+                                <a class="nav-link text-danger" asp-controller="Favorito" asp-action="Index" title="Mis Favoritos">
+                                    <i class="fas fa-heart fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-primary" asp-controller="Carrito" asp-action="Index" title="Ver Carrito">
+                                    <i class="fas fa-shopping-cart fa-lg"></i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown me-3">
+                                <a class="nav-link position-relative text-secondary" href="#" id="notificacionesDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-bell fa-lg"></i>
+                                    <span id="contadorNotificaciones" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="notificacionesDropdown" id="listaNotificaciones" style="width: 300px; max-height: 400px; overflow-y: auto;">
+                                    <li><span class="dropdown-item text-muted small">Sin notificaciones</span></li>
+                                </ul>
+                            </li>
+
+                            <partial name="_LoginPartial" />
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container main-content-user">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="bg-light text-center text-muted py-4 mt-auto border-top">
+            <div class="container">
+                <p class="mb-1 fw-bold">&copy; 2025 - Alphatech Store</p>
+                <div class="small">
+                    <a href="#" class="text-decoration-none mx-2 text-muted">Términos</a> |
+                    <a href="#" class="text-decoration-none mx-2 text-muted">Contacto</a>
+                </div>
+            </div>
+        </footer>
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <partial name="_NotificacionesPartial" />
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
     <script>
         const API_URL_NOTIFICACIONES = '/api/notificaciones';
 
         function cargarNotificaciones() {
+            // Buscamos ambas listas (Admin y User)
+            const listaUser = $("#listaNotificaciones");
+            const listaAdmin = $("#listaNotificacionesAdmin");
+
+            // Si no existen elementos en el DOM, no hacemos nada
+            if (listaUser.length === 0 && listaAdmin.length === 0) return;
+
             $.get(API_URL_NOTIFICACIONES, function (notificaciones) {
-                $("#listaNotificaciones").empty();
-                if (!notificaciones || notificaciones.length === 0) {
-                    $("#listaNotificaciones").append('<li><span class="dropdown-item">Sin notificaciones</span></li>');
-                    $("#contadorNotificaciones").text("0");
-                    return;
-                }
+                // Limpiar listas
+                if(listaUser.length) listaUser.empty();
+                if(listaAdmin.length) listaAdmin.empty();
 
                 let noLeidas = 0;
-                notificaciones.forEach(n => {
-                    if (!n.leida) noLeidas++;
-                    $("#listaNotificaciones").append(`
-                        <li>
-                            <a class="dropdown-item ${n.leida ? '' : 'fw-bold'}" href="${n.url || '#'}" onclick="marcarLeida(${n.id})">
-                                ${n.mensaje} <br/>
-                                <small class="text-muted">${new Date(n.fecha).toLocaleString()}</small>
-                            </a>
-                        </li>
-                    `);
-                });
-                $("#contadorNotificaciones").text(noLeidas);
+                let htmlContent = "";
+
+                if (!notificaciones || notificaciones.length === 0) {
+                    htmlContent = '<li><span class="dropdown-item small text-muted text-center py-2">No tienes notificaciones</span></li>';
+                } else {
+                    // Encabezado
+                    htmlContent += '<li><h6 class="dropdown-header text-uppercase small fw-bold">Recientes</h6></li>';
+
+                    notificaciones.forEach(n => {
+                        if (!n.leida) noLeidas++;
+                        // Icono según tipo (opcional, por defecto info)
+                        let icon = '<i class="fas fa-info-circle text-primary me-2"></i>';
+
+                        // Estilo leída vs no leída
+                        let bgClass = n.leida ? 'bg-white' : 'bg-light fw-bold';
+
+                        htmlContent += `
+                            <li>
+                                <a class="dropdown-item ${bgClass} border-bottom py-2" href="${n.url || '#'}" onclick="marcarLeida(${n.id})">
+                                    <div class="d-flex align-items-start">
+                                        <div class="mt-1">${icon}</div>
+                                        <div>
+                                            <div class="text-wrap" style="font-size: 0.9rem;">${n.mensaje}</div>
+                                            <small class="text-muted" style="font-size: 0.75rem;">${new Date(n.fecha).toLocaleString()}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        `;
+                    });
+                }
+
+                // Inyectar HTML en User
+                if(listaUser.length) {
+                    listaUser.append(htmlContent);
+                    $("#contadorNotificaciones").text(noLeidas > 0 ? noLeidas : "").toggle(noLeidas > 0);
+                }
+
+                // Inyectar HTML en Admin
+                if(listaAdmin.length) {
+                    listaAdmin.append(htmlContent);
+                    $("#contadorNotificacionesAdmin").text(noLeidas > 0 ? noLeidas : "").toggle(noLeidas > 0);
+                }
+            }).fail(function() {
+                console.log("Error cargando notificaciones API (puede que el controlador no exista aún)");
             });
         }
 
@@ -112,8 +324,10 @@
         }
 
         $(document).ready(function () {
+            // Cargar inicial
             cargarNotificaciones();
-            setInterval(cargarNotificaciones, 30000); // refrescar cada 30s
+            // Refrescar cada 30 seg
+            setInterval(cargarNotificaciones, 30000);
         });
     </script>
 

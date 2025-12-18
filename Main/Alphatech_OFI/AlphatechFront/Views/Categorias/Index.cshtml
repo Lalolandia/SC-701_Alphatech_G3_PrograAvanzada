@@ -1,286 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<AlphatechFront.Models.Categoria>
 @{
+    ViewData["Title"] = "Gestión de Categorías";
 }
 
-<h1>Lista de Datos</h1>
-
-
-
-<div class="container">
-
-
-    <div class="mb-3">
-        <label for="" class="form-label">Id</label>
-        <input type="text"
-               class="form-control"
-               name="id_categoria"
-               id="id_categoria"
-               aria-describedby="helpId"
-               placeholder="" />
-        <small id="helpId" class="form-text text-muted">Help text id</small>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="text-primary fw-bold mb-0">Categorías</h2>
+        <p class="text-muted small">Organiza tu inventario</p>
     </div>
-
-
-    <div class="mb-3">
-        <label for="" class="form-label">Nombre</label>
-        <input type="text"
-               class="form-control"
-               name="nombre_categoria"
-               id="nombre_categoria"
-               aria-describedby="helpId"
-               placeholder="" />
-        <small id="helpId" class="form-text text-muted">Help text name</small>
-    </div>
-
-    
-
-    <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
-    <a id="modificarDatos" class="btn btn-success">Actualizar </a>
-    <a id="limpiarDatos" onclick="limpiarDatos()" class="btn btn-danger">Limpiar </a>
-
+    <a asp-action="Crear" class="btn btn-primary shadow-sm rounded-pill px-4">
+        <i class="fas fa-plus me-2"></i>Nueva Categoría
+    </a>
 </div>
 
-
-
-<div class="table-responsive">
-    <table class="table table-primary">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th> 
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="listaDatos">
-        </tbody>
-    </table>
-</div>
-
-
-<script>
-
-    const API_URL = 'https://localhost:7155/Categorias';
-
-            function cargarDatos(){
-            limpiarDatos();
-            $.ajax(
+<div class="card shadow border-0 col-md-8">
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light text-uppercase text-secondary small">
+                <tr>
+                    <th class="ps-4 py-3">ID</th>
+                    <th class="py-3">Nombre</th>
+                    <th class="text-end pe-4 py-3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    url: API_URL,
-                    method: 'GET',
-                    success: function(dato){
-                        console.log(dato);
-                        $("#listaDatos").empty();
+                    <tr>
+                        <td class="ps-4 fw-bold text-muted">#@item.Id</td>
+                        <td class="fw-bold">
+                            <i class="fas fa-tag text-primary me-2"></i> @item.Nombre
+                        </td>
+                        <td class="text-end pe-4">
+                            <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="tooltip" title="Editar Categoría">
+                                <i class="fas fa-edit"></i>
+                            </a>
 
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                    data-bs-toggle="tooltip" title="Eliminar Categoría"
+                                    onclick="confirmarEliminacion(@item.Id, '@item.Nombre')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
 
-                            dato.forEach(
-                                soyItem =>
-                                    {
-                                            $("#listaDatos").append(`
-
-                                                <tr>
-                                                    <td>${soyItem.id_categoria}</td>
-                                                    <td>${soyItem.nombre_categoria}</td>
-                                                    <th>
-
-                                                        <a
-                                                            name=""
-                                                            id=""
-                                                            class="btn btn-primary"
-                                                            href="#"
-                                                            role="button"
-                                                            onclick="cargarEditar('${soyItem.id_categoria}','${soyItem.nombre_categoria}')"
-                                                            >Editar</a
-                                                        >
-
-                                                        <a
-                                                            name="eliminar"
-                                                            id="eliminar"
-                                                            class="btn btn-danger"
-                                                            data-id="${soyItem.id_categoria}"
-                                                            role="button"
-                                                            >Eliminar</a
-                                                        >
-
-                                                    </th>
-                                                </tr>
-                                            `)
-                                        });
-
-
-
-                    },
-                    error: function(xhr, status, error){
-                        console.error("error " + error) ;
-                    }
-
+                            <form id="form-eliminar-@item.Id" asp-action="Eliminar" asp-route-id="@item.Id" method="post" style="display:none;"></form>
+                        </td>
+                    </tr>
                 }
-            );
-            // $.get(API_URL, function(dato){
+            </tbody>
+        </table>
+    </div>
+</div>
 
-            //     console.log(dato);
-            //     //??? que no tenga idea ???
-            //         dato.forEach( soyItem => {
+@section Scripts {
+    <script>
+        // Activar Tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
 
-            //         }
-            //     );
-            // })
-        }
-
-
-
-
-        window.cargarEditar = function (id_categoria, nombre_categoria){
-            $('#id_categoria').val(id_categoria);
-            $('#nombre_categoria').val(nombre_categoria);
-          
-
-            $("#guardarDatos").hide();
-            $("#modificarDatos").show();
-
-
-               //         <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
-    // <a id="modificarDatos" class="btn btn-success">Actualizar </a>
-
-        }
-
-        window.limpiarDatos = function(){
-        //function limpiarDatos(){
-            $('#id_categoria').val("");
-            $('#nombre_categoria').val("");
-           
-
-            $("#modificarDatos").hide();
-            $("#guardarDatos").show();
-
-        }
-
-
-
-
-
-        $("#guardarDatos").click(function() {
-
-
-
-        const item =
-            {
-                id_categoria: 0,
-                nombre_categoria: $('#nombre_categoria').val()
-                
-            };
-
-
-            console.log(item);
-
-            $.ajax({
-                url: API_URL,
-                type: "POST",
-                contentType: ' application/json',
-                data: JSON.stringify(item),
-
-                success: function(){
-                    alert("Salvando");
-
-                    cargarDatos();
-                },
-                error: function(xhr, status, error){
-                            console.error("error " + error) ;
-                            console.error("status " + status) ;
-                            console.error("xhr " + xhr) ;
+        // Confirmación SweetAlert
+        function confirmarEliminacion(id, nombre) {
+            Swal.fire({
+                title: '¿Eliminar Categoría?',
+                text: "Estás intentando borrar: " + nombre + ". Si tiene productos, dará error.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, intentar borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-eliminar-' + id).submit();
                 }
-
-
             })
-
-
-        });
-
-        $("#modificarDatos").click(function() {
-
-
-
-        const item =
-            {
-                id_categoria: $('#id_categoria').val(),
-                nombre_categoria: $('#nombre_categoria').val()
-                
-            };
-
-
-            console.log(item);
-
-            $.ajax({
-                url: API_URL,
-                type: "PUT",
-                contentType: ' application/json',
-                data: JSON.stringify(item),
-
-                success: function(){
-                    alert("Salvando");
-
-                    cargarDatos();
-                },
-                error: function(xhr, status, error){
-                            console.error("error " + error) ;
-                            console.error("status " + status) ;
-                            console.error("xhr " + xhr) ;
-                }
-
-
-            })
-
-
-        });
-
-
-
-
-
-    $(document).ready(function(){
-
-
-    //         <a id="guardarDatos" class="btn btn-primary">Nuevo registro </a>
-    // <a id="modificarDatos" class="btn btn-success">Actualizar </a>
-
-        cargarDatos();
-
-        $(document).on("click", "#eliminar", function(e) {
-         e.preventDefault();
-
-        const id = $(this).data("id")
-
-        const item =
-            {
-                id_producto: id
-            };
-
-
-            console.log(item);
-
-            $.ajax({
-                url: API_URL + "?id=" +id,
-                type: "DELETE",
-                contentType: ' application/json',
-                data: JSON.stringify(item),
-
-                success: function(){
-                    alert("Eliminando");
-
-                    cargarDatos();
-                },
-                error: function(xhr, status, error){
-                            console.error("error " + error) ;
-                            console.error("status " + status) ;
-                            console.error("xhr " + xhr) ;
-                }
-
-
-            })
-
-
-        });
-    });
-
-</script>
+        }
+    </script>
+}

@@ -3,29 +3,40 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AlphatechFront.Models
 {
-    [Table("productos", Schema = "dbo")]
     public class Producto
     {
-        [Key]
-        [Column("id_producto")]
-        public int id_producto { get; set; }
+        public int Id { get; set; }
 
-        [Column("nombre")]
-        public string nombre { get; set; }
+        [Required(ErrorMessage = "El nombre es obligatorio.")]
+        [StringLength(100, ErrorMessage = "El nombre no puede tener más de 100 caracteres.")]
+        public string Nombre { get; set; }
 
-        [Column("descripcion")]
-        public string descripcion { get; set; }
+        [Required(ErrorMessage = "La descripción es obligatoria.")]
+        public string Descripcion { get; set; }
 
-        [Column("precio")]
-        public decimal precio { get; set; }
+        [Required(ErrorMessage = "El precio es obligatorio.")]
+        [Range(1, 10000000, ErrorMessage = "El precio debe ser mayor a 0.")]
+        [DisplayFormat(DataFormatString = "{0:N2}")] // Formato visual 1,500.00
+        public decimal Precio { get; set; }
 
-        [Column("stock")]
-        public int stock { get; set; }
+        [Required(ErrorMessage = "El stock es obligatorio.")]
+        [Range(0, 10000, ErrorMessage = "El stock no puede ser negativo.")]
+        public int Stock { get; set; }
 
-        [Column("imagen_url")]
-        public string imagen_url { get; set; }
+        [Display(Name = "Imagen de Portada")]
+        public string? ImagenUrl { get; set; }
 
-        [Column("categoria_id")]
-        public int? categoria_id { get; set; }
+        [Required(ErrorMessage = "Debes seleccionar una categoría.")]
+        [Display(Name = "Categoría")]
+        public int CategoriaId { get; set; }
+
+        public string? CategoriaNombre { get; set; }
+    }
+
+    // Tu clase auxiliar CategoriaSelect sigue igual aquí abajo...
+    public class CategoriaSelect
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
 }

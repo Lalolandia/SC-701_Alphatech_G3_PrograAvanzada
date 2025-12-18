@@ -1,0 +1,30 @@
+﻿@if (TempData["Exito"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: '¡Excelente!',
+                text: '@TempData["Exito"]',
+                icon: 'success',
+                confirmButtonColor: '#2dce89',
+                confirmButtonText: 'Aceptar',
+                timer: 3000
+            });
+        });
+    </script>
+}
+
+@if (TempData["Error"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Hubo un problema',
+                text: '@TempData["Error"]',
+                icon: 'error',
+                confirmButtonColor: '#f5365c',
+                confirmButtonText: 'Entendido'
+            });
+        });
+    </script>
+}

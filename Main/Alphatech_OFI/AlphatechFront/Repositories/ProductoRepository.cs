@@ -1,51 +1,117 @@
-﻿// Repositories/ProductoRepository.cs
+﻿using AlphatechFront.Data;
 using AlphatechFront.Models;
 using Dapper;
 using System.Data;
 
-public class ProductoRepository : IProductoRepository
+namespace AlphatechFront.Repositories
 {
-    private readonly DapperContext _context;
-
-    public ProductoRepository(DapperContext context)
+    public class ProductoRepository : IProductoRepository
     {
-        _context = context; // Inyección del contexto de BD
-    }
+        private readonly DapperContext _context;
 
-    public async Task<IEnumerable<Producto>> ObtenerProductos()
-    {
-        using (var connection = _context.CreateConnection())
+        public ProductoRepository(DapperContext context)
         {
-            // Llama al SP creado en el paso 2
-            return await connection.QueryAsync<Producto>("sp_ObtenerProductos", commandType: CommandType.StoredProcedure);
+            _context = context;
         }
-    }
 
-    public async Task CrearProducto(Producto producto)
-    {
-        using (var connection = _context.CreateConnection())
+        // 1. LISTAR PRODUCTOS (Con el Nombre de la Categoría)
+        public async Task<IEnumerable<Producto>> ObtenerProductos()
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("Nombre", producto.Nombre);
-            parameters.Add("Descripcion", producto.Descripcion);
-            parameters.Add("Precio", producto.Precio);
-            parameters.Add("Stock", producto.Stock);
-            parameters.Add("ImagenUrl", producto.ImagenUrl);
-            parameters.Add("CategoriaId", producto.CategoriaId); // Asegúrate que tu modelo tenga esta propiedad
+            // Usamos INNER JOIN para traer 'nombre_categoria' y lo guardamos en 'CategoriaNombre'
+            var query = @"
+                SELECT 
+                    p.id_producto as Id, 
+                    p.nombre as Nombre, 
+                    p.descripcion as Descripcion, 
+                    p.precio as Precio, 
+                    p.stock as Stock, 
+                    p.imagen_url as ImagenUrl, 
+                    p.categoria_id as CategoriaId,
+                    c.nombre_categoria as CategoriaNombre 
+                FROM productos p
+                INNER JOIN categorias c ON p.categoria_id = c.id_categoria";
 
-            await connection.ExecuteAsync("sp_InsertarProducto", parameters, commandType: CommandType.StoredProcedure);
+            using (var connection = _context.CreateConnection())
+            {
+                return await connection.QueryAsync<Producto>(query);
+            }
         }
-    }
-    public async Task<Producto> ObtenerProductoPorId(int id)
-    {
-        using (var connection = _context.CreateConnection())
+
+        // 2. OBTENER UN SOLO PRODUCTO (Para Editar)
+        public async Task<Producto> ObtenerProductoPorId(int id)
         {
-            // QuerySingleOrDefaultAsync se usa cuando esperas solo 1 resultado
-            return await connection.QuerySingleOrDefaultAsync<Producto>(
-                "sp_ObtenerProductoPorId",
-                new { Id = id },
-                commandType: CommandType.StoredProcedure
-            );
+            var query = @"
+                SELECT 
+                    id_producto as Id, 
+                    nombre as Nombre, 
+                    descripcion as Descripcion, 
+                    precio as Precio, 
+                    stock as Stock, 
+                    imagen_url as ImagenUrl, 
+                    categoria_id as CategoriaId 
+                FROM productos 
+                WHERE id_producto = @Id";
+
+            using (var connection = _context.CreateConnection())
+            {
+                return await connection.QuerySingleOrDefaultAsync<Producto>(query, new { Id = id });
+            }
+        }
+
+        // 3. CREAR PRODUCTO
+        public async Task CrearProducto(Producto producto)
+        {
+            var query = @"
+                INSERT INTO productos (nombre, descripcion, precio, stock, imagen_url, categoria_id) 
+                VALUES (@Nombre, @Descripcion, @Precio, @Stock, @ImagenUrl, @CategoriaId)";
+
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, producto);
+            }
+        }
+
+        // 4. ACTUALIZAR PRODUCTO
+        public async Task UpdateProducto(Producto producto)
+        {
+            var query = @"
+                UPDATE productos 
+                SET nombre = @Nombre, 
+                    descripcion = @Descripcion, 
+                    precio = @Precio, 
+                    stock = @Stock, 
+                    imagen_url = @ImagenUrl, 
+                    categoria_id = @CategoriaId 
+                WHERE id_producto = @Id";
+
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, producto);
+            }
+        }
+
+        // 5. ELIMINAR PRODUCTO
+        public async Task DeleteProducto(int id)
+        {
+            var query = "DELETE FROM productos WHERE id_producto = @Id";
+
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { Id = id });
+            }
+        }
+
+        // 6. OBTENER CATEGORÍAS (Para el Dropdown/Select)
+        public async Task<IEnumerable<CategoriaSelect>> ObtenerCategoriasParaSelect()
+        {
+            // Mapeamos id_categoria -> Id y nombre_categoria -> Nombre
+            // Para que coincida con la clase CategoriaSelect que creamos en el Modelo
+            var query = "SELECT id_categoria as Id, nombre_categoria as Nombre FROM categorias";
+
+            using (var connection = _context.CreateConnection())
+            {
+                return await connection.QueryAsync<CategoriaSelect>(query);
+            }
         }
     }
 }

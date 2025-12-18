@@ -1,18 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 
 namespace AlphatechFront.Models
 {
-    // TAREA PARA COMPAÑEROS:
-    // Este es el modelo de Usuario base. Si necesitan más campos
-    // (como Teléfono, Dirección, etc.), deben agregarlos aquí.
+    // Es OBLIGATORIO que herede de IdentityUser
     public class Usuario : IdentityUser
     {
-        
+        // Tus propiedades extra
         public string NombreCompleto { get; set; }
-
-      
-
-
+        public string? Rol { get; set; }
+        // No agregues Id, Email o Password aquí, IdentityUser ya los trae
     }
 }

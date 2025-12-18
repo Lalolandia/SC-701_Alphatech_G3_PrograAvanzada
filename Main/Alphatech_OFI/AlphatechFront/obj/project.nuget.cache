@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "73HguTLlA60=",
+  "dgSpecHash": "JzgOo1SOqSE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\AlphatechFront.csproj",
+  "projectFilePath": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\AlphatechFront.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luis\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Luis\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

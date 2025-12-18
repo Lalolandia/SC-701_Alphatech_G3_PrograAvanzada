@@ -1,72 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\",
+  "WorkspaceRootPath": "D:\\Downloads\\Alphatech_OFI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Luis\\AppData\\Local\\Temp\\.vsdbgsrc\\1f4073fe3f822fc7b0cbfe64d5d3535fcd7e9311628872852df2ff1604848b4f\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\repositories\\ventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\repositories\\ventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\repositories\\productorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\repositories\\productorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\interfaces\\iproductosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\interfaces\\iproductosrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\data\\dappercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\data\\dappercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\data\\aplicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\data\\aplicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\views\\carrito\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\views\\carrito\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\controllers\\cuponescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\controllers\\cuponescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\models\\cupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\models\\cupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|c:\\users\\luis\\documents\\programacion\\progra avanz web\\sc-701_alphatech_g3_prograavanzada\\main\\alphatech_ofi\\alphatechfront\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Downloads\\AlphatechActualizadoKaled#3\\Alphatech_Actualizado\\AlphatechFront\\Migrations\\ApplicationDbContextModelSnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|d:\\downloads\\alphatech_ofi\\alphatechfront\\interfaces\\iventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80377B75-0A08-44D0-B98D-05B267B50447}|AlphatechFront\\AlphatechFront.csproj|solutionrelative:alphatechfront\\interfaces\\iventarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -76,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 317,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -100,221 +42,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\AppData\\Local\\Temp\\.vsdbgsrc\\1f4073fe3f822fc7b0cbfe64d5d3535fcd7e9311628872852df2ff1604848b4f\\Program.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1f4073fe3f822fc7b0cbfe64d5d3535fcd7e9311628872852df2ff1604848b4f\\Program.cs",
-              "ToolTip": "C:\\Users\\Luis\\AppData\\Local\\Temp\\.vsdbgsrc\\1f4073fe3f822fc7b0cbfe64d5d3535fcd7e9311628872852df2ff1604848b4f\\Program.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1f4073fe3f822fc7b0cbfe64d5d3535fcd7e9311628872852df2ff1604848b4f\\Program.cs [Read Only]",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAqwBQAAAACAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T02:57:09.038Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProductosController.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\ProductosController.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Controllers\\ProductosController.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\ProductosController.cs",
-              "RelativeToolTip": "AlphatechFront\\Controllers\\ProductosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T02:46:20.363Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProductoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Repositories\\ProductoRepository.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Repositories\\ProductoRepository.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Repositories\\ProductoRepository.cs",
-              "RelativeToolTip": "AlphatechFront\\Repositories\\ProductoRepository.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T02:43:50.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IProductosRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Interfaces\\IProductosRepository.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Interfaces\\IProductosRepository.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Interfaces\\IProductosRepository.cs",
-              "RelativeToolTip": "AlphatechFront\\Interfaces\\IProductosRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T02:41:54.429Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DapperContext.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Data\\DapperContext.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Data\\DapperContext.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Data\\DapperContext.cs",
-              "RelativeToolTip": "AlphatechFront\\Data\\DapperContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T02:40:14.159Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\appsettings.json",
-              "RelativeDocumentMoniker": "AlphatechFront\\appsettings.json",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\appsettings.json",
-              "RelativeToolTip": "AlphatechFront\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-22T05:00:40.933Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "AlphatechFront\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "AlphatechFront\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAC4AAAAAAAAAAABBwAsAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-22T04:11:28.553Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "NotificacionesController.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\NotificacionesController.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Controllers\\NotificacionesController.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\NotificacionesController.cs",
-              "RelativeToolTip": "AlphatechFront\\Controllers\\NotificacionesController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAIBJwA8AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T04:07:57.399Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Program.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Program.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Program.cs",
-              "RelativeToolTip": "AlphatechFront\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAC4AAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T07:52:03.71Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ApplicationDbContextModelSnapshot.cs",
-              "DocumentMoniker": "D:\\Downloads\\AlphatechActualizadoKaled#3\\Alphatech_Actualizado\\AlphatechFront\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ToolTip": "D:\\Downloads\\AlphatechActualizadoKaled#3\\Alphatech_Actualizado\\AlphatechFront\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAPsAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T03:12:33.511Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Cupon.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Models\\Cupon.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Models\\Cupon.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Models\\Cupon.cs",
-              "RelativeToolTip": "AlphatechFront\\Models\\Cupon.cs",
+              "Title": "IVentaRepository.cs",
+              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Interfaces\\IVentaRepository.cs",
+              "RelativeDocumentMoniker": "AlphatechFront\\Interfaces\\IVentaRepository.cs",
+              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Interfaces\\IVentaRepository.cs",
+              "RelativeToolTip": "AlphatechFront\\Interfaces\\IVentaRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T03:23:54.239Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T07:24:49.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Views\\Carrito\\Index.cshtml",
-              "RelativeDocumentMoniker": "AlphatechFront\\Views\\Carrito\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Views\\Carrito\\Index.cshtml",
-              "RelativeToolTip": "AlphatechFront\\Views\\Carrito\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-22T03:22:46.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "AlphatechFront\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAIBJwBUAAAATAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "VentaRepository.cs",
+              "DocumentMoniker": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Repositories\\VentaRepository.cs",
+              "RelativeDocumentMoniker": "AlphatechFront\\Repositories\\VentaRepository.cs",
+              "ToolTip": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\Repositories\\VentaRepository.cs",
+              "RelativeToolTip": "AlphatechFront\\Repositories\\VentaRepository.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T09:33:00.28Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Data\\AplicationDbContext.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Data\\AplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Data\\AplicationDbContext.cs",
-              "RelativeToolTip": "AlphatechFront\\Data\\AplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T07:26:38.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "AlphatechFront\\Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "AlphatechFront\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-03T00:13:47.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Models\\Usuario.cs",
-              "RelativeToolTip": "AlphatechFront\\Models\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T08:05:00.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CuponesController.cs",
-              "DocumentMoniker": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\CuponesController.cs",
-              "RelativeDocumentMoniker": "AlphatechFront\\Controllers\\CuponesController.cs",
-              "ToolTip": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\Controllers\\CuponesController.cs",
-              "RelativeToolTip": "AlphatechFront\\Controllers\\CuponesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-18T07:23:32.793Z",
+              "WhenOpened": "2025-12-16T07:24:36.137Z",
               "EditorCaption": ""
             }
           ]

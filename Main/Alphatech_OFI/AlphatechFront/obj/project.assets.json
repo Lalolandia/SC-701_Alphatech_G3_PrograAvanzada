@@ -4425,11 +4425,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\AlphatechFront.csproj",
+      "projectUniqueName": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\AlphatechFront.csproj",
       "projectName": "AlphatechFront",
-      "projectPath": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\AlphatechFront.csproj",
+      "projectPath": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\AlphatechFront.csproj",
       "packagesPath": "C:\\Users\\Luis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Luis\\Documents\\PROGRAMACION\\PROGRA AVANZ WEB\\SC-701_Alphatech_G3_PrograAvanzada\\Main\\Alphatech_OFI\\AlphatechFront\\obj\\",
+      "outputPath": "D:\\Downloads\\Alphatech_OFI\\AlphatechFront\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

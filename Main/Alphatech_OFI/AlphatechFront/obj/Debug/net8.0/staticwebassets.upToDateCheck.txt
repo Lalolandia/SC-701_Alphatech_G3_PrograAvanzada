@@ -1,6 +1,9 @@
 wwwroot\css\account.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\imagenes\productos\bd06f5b1-4634-4753-a948-281beda676ec.png
+wwwroot\imagenes\productos\e09f583a-14a5-40af-9873-bfb9571829ef.jpg
+wwwroot\imagenes\productos\fdc8aae3-4fc0-4df6-be04-a89e67c1b04d.jpg
 wwwroot\images\fondoAcoount.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css

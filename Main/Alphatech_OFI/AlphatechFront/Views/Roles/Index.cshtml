@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Gestión de Roles";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="text-primary fw-bold mb-0">Roles del Sistema</h2>
+        <p class="text-muted small">Define los niveles de acceso</p>
+    </div>
+    <a asp-action="Crear" class="btn btn-primary shadow-sm rounded-pill px-4">
+        <i class="fas fa-plus me-2"></i>Nuevo Rol
+    </a>
+</div>
+
+<div class="card shadow border-0 col-md-10 mx-auto">
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light text-uppercase text-secondary small">
+                <tr>
+                    <th class="ps-4 py-3">Nombre del Rol</th>
+                    <th class="py-3">Estado</th>
+                    <th class="text-end pe-4 py-3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    bool esSistema = (item.Name == "Admin" || item.Name == "Administrador");
+
+                    <tr>
+                        <td class="ps-4 fw-bold">
+                            <i class="fas fa-shield-alt text-muted me-2"></i> @item.Name
+                        </td>
+                        <td>
+                            @if (esSistema)
+                            {
+                                <span class="badge bg-primary">Sistema (Protegido)</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Personalizado</span>
+                            }
+                        </td>
+                        <td class="text-end pe-4">
+                            @if (!esSistema)
+                            {
+                                <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="tooltip" title="Editar Nombre">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <button type="button" class="btn btn-sm btn-outline-danger"
+                                        data-bs-toggle="tooltip" title="Eliminar Rol"
+                                        onclick="confirmarEliminacion('@item.Id', '@item.Name')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+
+                                <form id="form-eliminar-@item.Id" asp-action="Eliminar" asp-route-id="@item.Id" method="post" style="display:none;"></form>
+                            }
+                            else
+                            {
+                                <span class="text-muted small fst-italic me-2">No editable</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Activar Tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        // SweetAlert para eliminar
+        function confirmarEliminacion(id, nombre) {
+            Swal.fire({
+                title: '¿Eliminar Rol?',
+                text: "Estás a punto de eliminar el rol: " + nombre + ". Esto no se puede deshacer.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-eliminar-' + id).submit();
+                }
+            })
+        }
+    </script>
+}
